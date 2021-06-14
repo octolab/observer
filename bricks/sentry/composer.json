@@ -1,0 +1,15 @@
+{
+    "name": "example/sentry",
+    "repositories": [
+        { "url": "../../", "type": "path" }
+    ],
+    "require": {
+        "php": "^8.1",
+        "kamilsk/observer": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Prototype\\Sentry\\": "src/"
+        }
+    }
+}
