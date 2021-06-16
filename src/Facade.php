@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace OctoLab\Observer;
 
+use JetBrains\PhpStorm\Pure;
+
 class Facade
 {
-    public function __construct(
+    #[Pure] public function __construct(
         private readonly Analytics $analytics = new Stub\Analytics(),
         private readonly Classifier $classifier = new Stub\Classifier(),
         private readonly Logger $logger = new Stub\Logger(),
@@ -36,6 +38,12 @@ class Facade
         return $this->tracer;
     }
 
+    /**
+     * @template T
+     * @param T $e
+     * @throws T
+     * @throws Exception\Broken
+     */
     public function handle(\Throwable $e, ?Payload\Context $context = null): bool
     {
         $action = $this->classifier->classify($e, $context);

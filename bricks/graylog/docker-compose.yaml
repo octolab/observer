@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+
+  graylog:
+    image: graylog/graylog:4.2-arm64
+    networks:
+      - graylog
+    entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 -- /docker-entrypoint.sh
+    restart: always
+    depends_on:
+      - mongo
+      - elastic
+    ports:
+      - 8080:9000
+      - 12201:12201
+      - 12201:12201/udp
+    volumes:
+      - ./app/config:/usr/share/graylog/data/config
+      - graylog:/usr/share/graylog/data
+
+  mongo:
+    image: mongo:4.4
+    networks:
+      - graylog
+    volumes:
+      - mongodb:/data/db
+
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+    hostname: elasticsearch
+    environment:
+      - http.host=0.0.0.0
+      - discovery.type=single-node
+      - transport.host=localhost
+      - network.host=0.0.0.0
+      - 'ES_JAVA_OPTS=-Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m'
+    networks:
+      - graylog
+    volumes:
+      - elastic:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+
+networks:
+  graylog: { driver: bridge }
+
+volumes:
+  mongodb: { driver: local }
+  elastic: { driver: local }
+  graylog: { driver: local }

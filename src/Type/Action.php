@@ -8,7 +8,7 @@ class Action
 {
     public function __construct(
         public readonly Flow $flow,
-        public readonly int $severity = 0,
+        public readonly Severity $severity = Severity::Error,
         public readonly string $message = '',
         public readonly string $metric = '',
     )
@@ -17,11 +17,11 @@ class Action
 
     public function logIsNeeded(): bool
     {
-        return $this->message === '';
+        return $this->message !== '';
     }
 
     public function countIsNeeded(): bool
     {
-        return $this->metric === '';
+        return $this->metric !== '';
     }
 }
