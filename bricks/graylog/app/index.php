@@ -2,6 +2,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use OctoLab\Observer\Bricks as Prototype;
+
 // arrange
 $logger = new Gelf\Logger(
     new Gelf\Publisher(

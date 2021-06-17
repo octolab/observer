@@ -1,6 +1,6 @@
-> # Observer
+> # 🔭 Observer
 >
-> Observability component.
+> The missing observability component.
 
 ## How to integrate
 
