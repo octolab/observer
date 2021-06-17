@@ -6,5 +6,5 @@ namespace OctoLab\Observer;
 
 interface Classifier
 {
-    public function classify(\Throwable $e, ?Payload\Context $context = null): Type\Action;
+    public function classify(\Throwable $exception): Type\Action;
 }

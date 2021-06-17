@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace Prototype\Graylog;
 
+use JetBrains\PhpStorm\Pure;
 use OctoLab\Observer;
-use OctoLab\Observer\Payload;
 use OctoLab\Observer\Type;
 
 class Classifier implements Observer\Classifier
 {
-    private const LIMIT = 10;
-
-    public function classify(\Throwable $e, ?Payload\Context $context = null): Type\Action
+    #[Pure] public function classify(\Throwable $exception): Type\Action
     {
-        return match ($e::class) {
+        return match ($exception::class) {
             \DomainException::class => new Type\Action(
-                $context?->attempt() < self::LIMIT ? Type\Flow::repeat : Type\Flow::ignore,
-                message: '{name} integration example',
+                $exception,
+                Type\Flow::repeat,
+                message: '{name} integration example. Attempt number {attempt}...',
             ),
-            default => new Type\Action(Type\Flow::throw),
+            default => new Type\Action($exception, Type\Flow::throw),
         };
     }
 }

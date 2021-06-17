@@ -8,6 +8,6 @@ enum Flow
 {
     case ignore;
     case repeat;
-    case break;
     case throw;
+    case break;
 }

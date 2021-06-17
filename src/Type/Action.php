@@ -7,21 +7,22 @@ namespace OctoLab\Observer\Type;
 class Action
 {
     public function __construct(
+        public readonly \Throwable $error,
         public readonly Flow $flow,
         public readonly Severity $severity = Severity::Error,
-        public readonly string $message = '',
-        public readonly string $metric = '',
+        public readonly ?string $message = null,
+        public readonly ?string $metric = null,
     )
     {
     }
 
     public function logIsNeeded(): bool
     {
-        return $this->message !== '';
+        return !empty($this->message);
     }
 
     public function countIsNeeded(): bool
     {
-        return $this->metric !== '';
+        return !empty($this->metric);
     }
 }

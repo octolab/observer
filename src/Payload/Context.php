@@ -6,7 +6,7 @@ namespace OctoLab\Observer\Payload;
 
 interface Context
 {
-    public function attempt(): int;
+    final public const EXCEPTION = 'exception';
 
     /**
      * Provides context for logging.
@@ -22,5 +22,13 @@ interface Context
      */
     public function labels(): array;
 
+    /**
+     * Combines current context with the passed into a new one.
+     */
     public function merge(Context $context): Context;
+
+    /**
+     * Adds the error to fields with the 'exception' key.
+     */
+    public function with(\Throwable $e): Context;
 }

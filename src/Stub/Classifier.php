@@ -6,13 +6,12 @@ namespace OctoLab\Observer\Stub;
 
 use JetBrains\PhpStorm\Pure;
 use OctoLab\Observer;
-use OctoLab\Observer\Payload;
 use OctoLab\Observer\Type;
 
 class Classifier implements Observer\Classifier
 {
-    #[Pure] public function classify(\Throwable $e, ?Payload\Context $context = null): Type\Action
+    #[Pure] public function classify(\Throwable $exception): Type\Action
     {
-        return new Type\Action(Type\Flow::ignore);
+        return new Type\Action($exception, Type\Flow::ignore);
     }
 }

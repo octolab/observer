@@ -11,14 +11,8 @@ class Context implements Payload\Context
     public function __construct(
         private array $fields = [],
         private array $labels = [],
-        private int $attempt = 0,
     )
     {
-    }
-
-    public function attempt(): int
-    {
-        return ++$this->attempt;
     }
 
     public function fields(): array
@@ -34,9 +28,13 @@ class Context implements Payload\Context
     public function merge(Payload\Context $context): Payload\Context
     {
         return new self(
-            $this->fields() + $context->fields(),
-            $this->labels() + $context->labels(),
-            max($this->attempt(), $context->attempt()),
+            $context->fields() + $this->fields(),
+            $context->labels() + $this->labels(),
         );
+    }
+
+    public function with(\Throwable $e): Payload\Context
+    {
+        return $this->merge(new self([self::EXCEPTION => $e]));
     }
 }

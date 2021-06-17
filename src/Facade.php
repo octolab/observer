@@ -10,7 +10,6 @@ class Facade
 {
     #[Pure] public function __construct(
         private readonly Analytics $analytics = new Stub\Analytics(),
-        private readonly Classifier $classifier = new Stub\Classifier(),
         private readonly Logger $logger = new Stub\Logger(),
         private readonly Telemetry $telemetry = new Stub\Telemetry(),
         private readonly Tracer $tracer = new Stub\Tracer(),
@@ -38,15 +37,8 @@ class Facade
         return $this->tracer;
     }
 
-    /**
-     * @template T
-     * @param T $e
-     * @throws T
-     * @throws Exception\Broken
-     */
-    public function handle(\Throwable $e, ?Payload\Context $context = null): bool
+    public function handle(Type\Action $action, ?Payload\Context $context = null): bool
     {
-        $action = $this->classifier->classify($e, $context);
         if ($action->logIsNeeded()) {
             $this->logger->log($action->severity, $action->message, $context);
         }
@@ -56,8 +48,8 @@ class Facade
         return match ($action->flow) {
             Type\Flow::ignore => false,
             Type\Flow::repeat => true,
-            Type\Flow::break => throw new Exception\Broken($e),
-            Type\Flow::throw => throw $e,
+            Type\Flow::throw => throw $action->error,
+            Type\Flow::break => throw new Exception\Broken($action->error),
         };
     }
 }

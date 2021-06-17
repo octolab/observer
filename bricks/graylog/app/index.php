@@ -2,21 +2,33 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// arrange
 $logger = new Gelf\Logger(
     new Gelf\Publisher(
         new Gelf\Transport\UdpTransport('127.0.0.1', 12201),
         new Gelf\MessageValidator(),
     ),
 );
+$observer = new OctoLab\Observer\Facade(logger: new Prototype\Graylog\Logger($logger));
 
-$observer = new OctoLab\Observer\Facade(
-    classifier: new Prototype\Graylog\Classifier(),
-    logger: new Prototype\Graylog\Logger($logger),
-);
+// domain
+$action = static fn(): array => throw new DomainException();
+$classifier = new Prototype\Graylog\Classifier();
 
-$context = new Prototype\Graylog\Context(['name' => 'Graylog']);
-$repeat = true;
-while ($repeat) {
-    $repeat = $observer->handle(new DomainException(), $context);
-    print 'repeat? ' . ($repeat ? 'yes' : 'no') . PHP_EOL;
+// act
+$limiter = new Prototype\Graylog\Limiter(3);
+while ($limiter->pass()) {
+    $context = new Prototype\Graylog\Context([
+        'name' => 'Graylog',
+        'attempt' => $limiter->attempt(),
+    ]);
+    try {
+        $result = $action();
+    } catch (DomainException $e) {
+        $repeat = $observer->handle($classifier->classify($e), $context->with($e));
+        $limiter->break(!$repeat);
+    }
+
+    // assert
+    print 'repeat? ' . ($limiter->continue() ? 'yes' : 'no') . PHP_EOL;
 }
