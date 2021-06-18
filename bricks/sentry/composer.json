@@ -5,11 +5,13 @@
     ],
     "require": {
         "php": "^8.1",
-        "kamilsk/observer": "dev-main"
+        "octolab/observer": "dev-main",
+        "php-http/curl-client": "^2.2",
+        "sentry/sentry": "^3.3"
     },
     "autoload": {
         "psr-4": {
-            "Prototype\\Sentry\\": "src/"
+            "OctoLab\\Observer\\Bricks\\Sentry\\": "src/"
         }
     }
 }

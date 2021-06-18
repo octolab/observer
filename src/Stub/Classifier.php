@@ -10,8 +10,8 @@ use OctoLab\Observer\Type;
 
 class Classifier implements Observer\Classifier
 {
-    #[Pure] public function classify(\Throwable $exception): Type\Action
+    #[Pure] public function classify(\Throwable $error): Type\Action
     {
-        return new Type\Action($exception, Type\Flow::ignore);
+        return new Type\Action($error, Type\Flow::ignore);
     }
 }

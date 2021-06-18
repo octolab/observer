@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a0c624fb6000ce5771db7f7da39644e",
+    "content-hash": "63468639ff5c0fb765aba6705c116462",
     "packages": [
         {
-            "name": "kamilsk/observer",
+            "name": "octolab/observer",
             "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../..",
-                "reference": "8f03b84100b249d7d3371038cc956ec97074163e"
+                "reference": "ba27bc3ca5559e9f0b2fec46f582ad2d724ecfc6"
             },
             "require": {
                 "php": "^8.1"
@@ -23,7 +23,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "OctoLab\\Observer\\": "src/"
+                    "OctoLab\\Observer\\": "src/",
+                    "OctoLab\\Observer\\Bricks\\Graylog\\": "bricks/graylog/src/"
                 }
             },
             "autoload-dev": {
@@ -46,12 +47,14 @@
                 }
             ],
             "description": "Observability component.",
-            "homepage": "https://github.com/kamilsk/observer",
+            "homepage": "https://github.com/octolab/observer",
             "keywords": [
+                "analytics",
                 "logging",
                 "metrics",
                 "observability",
-                "telemetry"
+                "telemetry",
+                "tracing"
             ],
             "transport-options": {
                 "relative": true
@@ -62,7 +65,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kamilsk/observer": 20
+        "octolab/observer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
@@ -70,5 +73,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }

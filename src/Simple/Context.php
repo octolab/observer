@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OctoLab\Observer\Bricks\Graylog;
+namespace OctoLab\Observer\Simple;
 
 use OctoLab\Observer\Payload;
 
@@ -33,8 +33,8 @@ class Context implements Payload\Context
         );
     }
 
-    public function with(\Throwable $e): Payload\Context
+    public function with(\Throwable $exception): Payload\Context
     {
-        return $this->merge(new self([self::EXCEPTION => $e]));
+        return $this->merge(new self([self::EXCEPTION => $exception]));
     }
 }

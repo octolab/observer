@@ -16,7 +16,7 @@ services:
       - 12201:12201
       - 12201:12201/udp
     volumes:
-      - ./app/config:/usr/share/graylog/data/config
+      - ./config/graylog:/usr/share/graylog/data/config
       - graylog:/usr/share/graylog/data
 
   mongo:
@@ -24,6 +24,7 @@ services:
     networks:
       - graylog
     volumes:
+      - ./config/mongodb:/data/configdb
       - mongodb:/data/db
 
   elastic:

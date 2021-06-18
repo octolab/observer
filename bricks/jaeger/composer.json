@@ -5,11 +5,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "kamilsk/observer": "dev-main"
+        "octolab/observer": "dev-main"
     },
     "autoload": {
         "psr-4": {
-            "Prototype\\Jaeger\\": "src/"
+            "OctoLab\\Observer\\Bricks\\Jaeger\\": "src/"
         }
     }
 }

@@ -6,11 +6,10 @@
     "require": {
         "php": "^8.1",
         "graylog2/gelf-php": "^1.7",
-        "kamilsk/observer": "dev-main"
+        "octolab/observer": "dev-main"
     },
     "autoload": {
         "psr-4": {
-            "App\\Graylog\\": "app/",
             "OctoLab\\Observer\\Bricks\\Graylog\\": "src/"
         }
     }

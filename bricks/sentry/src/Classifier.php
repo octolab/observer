@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OctoLab\Observer\Bricks\Graylog;
+namespace OctoLab\Observer\Bricks\Sentry;
 
 use JetBrains\PhpStorm\Pure;
 use OctoLab\Observer;

@@ -5,11 +5,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "kamilsk/observer": "dev-main"
+        "octolab/observer": "dev-main"
     },
     "autoload": {
         "psr-4": {
-            "Prototype\\Prometheus\\": "src/"
+            "OctoLab\\Observer\\Bricks\\Prometheus\\": "src/"
         }
     }
 }

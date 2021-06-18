@@ -30,5 +30,5 @@ interface Context
     /**
      * Adds the error to fields with the 'exception' key.
      */
-    public function with(\Throwable $e): Context;
+    public function with(\Throwable $exception): Context;
 }

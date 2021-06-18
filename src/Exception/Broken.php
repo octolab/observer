@@ -11,8 +11,8 @@ class Broken extends \RuntimeException
     final public const CODE = 500;
     final public const MESSAGE = 'Interrupted execution flow';
 
-    #[Pure] public function __construct(\Throwable $e)
+    #[Pure] public function __construct(\Throwable $error)
     {
-        parent::__construct(self::MESSAGE, self::CODE, $e);
+        parent::__construct(self::MESSAGE, self::CODE, $error);
     }
 }

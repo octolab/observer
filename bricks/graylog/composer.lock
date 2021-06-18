@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e69de8d8d95bde9be9232b09fbfae189",
+    "content-hash": "2ad4ec42653000cbf406583b5199ef41",
     "packages": [
         {
             "name": "graylog2/gelf-php",
@@ -65,12 +65,12 @@
             "time": "2021-08-20T09:39:08+00:00"
         },
         {
-            "name": "kamilsk/observer",
+            "name": "octolab/observer",
             "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../..",
-                "reference": "a9c552571609f4e8db2c047eb88bea3d2776515c"
+                "reference": "d597378f15a0c26d1e10da0aadf451f575322ca0"
             },
             "require": {
                 "php": "^8.1"
@@ -81,7 +81,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "OctoLab\\Observer\\": "src/"
+                    "OctoLab\\Observer\\": "src/",
+                    "OctoLab\\Observer\\Bricks\\Graylog\\": "bricks/graylog/src/"
                 }
             },
             "autoload-dev": {
@@ -104,12 +105,14 @@
                 }
             ],
             "description": "Observability component.",
-            "homepage": "https://github.com/kamilsk/observer",
+            "homepage": "https://github.com/octolab/observer",
             "keywords": [
+                "analytics",
                 "logging",
                 "metrics",
                 "observability",
-                "telemetry"
+                "telemetry",
+                "tracing"
             ],
             "transport-options": {
                 "relative": true
@@ -237,7 +240,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kamilsk/observer": 20
+        "octolab/observer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
@@ -245,5 +248,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
