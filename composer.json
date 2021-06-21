@@ -47,7 +47,8 @@
         "friendsofphp/php-cs-fixer": "^3.4",
         "phpstan/phpstan": "^1.3",
         "phpunit/phpunit": "^9.5",
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "slevomat/coding-standard": "^7.0"
     },
     "scripts": {
         "test": "phpunit"
