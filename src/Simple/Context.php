@@ -15,6 +15,11 @@ class Context implements Payload\Context
     {
     }
 
+    public function error(): ?\Throwable
+    {
+        return $this->fields[self::EXCEPTION] ?? null;
+    }
+
     public function fields(): array
     {
         return $this->fields;

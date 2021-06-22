@@ -9,6 +9,11 @@ interface Context
     final public const EXCEPTION = 'exception';
 
     /**
+     * Returns an error associated with the context.
+     */
+    public function error(): ?\Throwable;
+
+    /**
      * Provides context for logging.
      *
      * @return array<string, string>
