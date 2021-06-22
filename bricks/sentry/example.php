@@ -11,7 +11,7 @@ $sentry = new Sentry\State\Hub(
         'dsn' => getenv('SENTRY_DSN'),
     ])->getClient()
 );
-$observer = new OctoLab\Observer\Facade(debugger: new Prototype\Sentry\Debugger($sentry));
+$observer = new OctoLab\Observer\Facade(logger: new Prototype\Sentry\Logger($sentry));
 
 // domain
 $revolver = [
