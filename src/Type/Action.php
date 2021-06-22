@@ -21,11 +21,6 @@ class Action
         return !empty($this->metric);
     }
 
-    public function debugIsNeeded(): bool
-    {
-        return $this->severity->value < Severity::Error->value;
-    }
-
     public function logIsNeeded(): bool
     {
         return !empty($this->message);
