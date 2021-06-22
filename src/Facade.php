@@ -10,7 +10,6 @@ class Facade
 {
     #[Pure] public function __construct(
         private readonly Analytics $analytics = new Stub\Analytics(),
-        private readonly Debugger $debugger = new Stub\Debugger(),
         private readonly Logger $logger = new Stub\Logger(),
         private readonly Telemetry $telemetry = new Stub\Telemetry(),
         private readonly Tracer $tracer = new Stub\Tracer(),
@@ -21,11 +20,6 @@ class Facade
     public function analytics(): Analytics
     {
         return $this->analytics;
-    }
-
-    public function debugger(): Debugger
-    {
-        return $this->debugger;
     }
 
     public function logger(): Logger
@@ -47,9 +41,6 @@ class Facade
     {
         if ($action->countIsNeeded()) {
             $this->telemetry->count($action->metric, context: $context);
-        }
-        if ($action->debugIsNeeded()) {
-            $this->debugger->debug($action->error);
         }
         if ($action->logIsNeeded()) {
             $this->logger->log($action->severity, $action->message, $context);
