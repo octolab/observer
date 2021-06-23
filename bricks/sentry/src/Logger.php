@@ -11,13 +11,16 @@ use Sentry\State\Hub as Sentry;
 
 class Logger implements Observer\Logger
 {
-    public function __construct(public readonly Sentry $transport)
+    public function __construct(
+        public readonly Sentry $transport,
+        public readonly Severity $threshold = Severity::Error,
+    )
     {
     }
 
     public function log(Severity $severity, string $message, ?Context $context = null): void
     {
-        if ($severity->value < Severity::Error->value && null !== ($error = $context?->error())) {
+        if ($severity->value < $this->threshold->value && null !== ($error = $context?->error())) {
             $this->transport->captureException($error);
         }
     }

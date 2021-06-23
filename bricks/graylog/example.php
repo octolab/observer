@@ -14,6 +14,8 @@ $graylog = new Gelf\Logger(
 );
 $observer = new OctoLab\Observer\Facade(logger: new Prototype\Graylog\Logger($graylog));
 
+
+
 // domain
 $revolver = [
     new OverflowException(),
@@ -26,19 +28,23 @@ $action = static function () use ($revolver): array {
     static $attempts = 0;
     throw $revolver[$attempts++ % count($revolver)];
 };
+$context = static function (OctoLab\Observer\Simple\Limiter $limiter): OctoLab\Observer\Simple\Context {
+    return new OctoLab\Observer\Simple\Context([
+        Fields::NAME => 'Graylog',
+        Fields::ATTEMPT => $limiter->attempt(),
+    ]);
+};
 $classifier = new Prototype\Graylog\Classifier();
+
+
 
 // act
 $limiter = new OctoLab\Observer\Simple\Limiter(2 * count($revolver));
 while ($limiter->pass()) {
-    $context = new OctoLab\Observer\Simple\Context([
-        Fields::NAME => 'Graylog',
-        Fields::ATTEMPT => $limiter->attempt(),
-    ]);
     try {
         $result = $action();
     } catch (Throwable $e) {
-        $repeat = $observer->handle($classifier->classify($e), $context->with($e));
+        $repeat = $observer->handle($classifier->classify($e), $context($limiter));
         $limiter->break(!$repeat);
     }
 

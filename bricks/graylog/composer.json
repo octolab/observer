@@ -1,5 +1,10 @@
 {
     "name": "example/graylog",
+    "autoload": {
+        "psr-4": {
+            "OctoLab\\Observer\\Bricks\\Graylog\\": "src/"
+        }
+    },
     "repositories": [
         { "url": "../../", "type": "path" }
     ],
@@ -8,9 +13,7 @@
         "graylog2/gelf-php": "^1.7",
         "octolab/observer": "dev-main"
     },
-    "autoload": {
-        "psr-4": {
-            "OctoLab\\Observer\\Bricks\\Graylog\\": "src/"
-        }
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     }
 }

@@ -37,13 +37,13 @@ class Facade
         return $this->tracer;
     }
 
-    public function handle(Type\Action $action, ?Payload\Context $context = null): bool
+    public function handle(Type\Action $action, Payload\Context $context): bool
     {
         if ($action->countIsNeeded()) {
             $this->telemetry->count($action->metric, context: $context);
         }
         if ($action->logIsNeeded()) {
-            $this->logger->log($action->severity, $action->message, $context);
+            $this->logger->log($action->severity, $action->message, $context->with($action->error));
         }
         return match ($action->flow) {
             Type\Flow::ignore => false,

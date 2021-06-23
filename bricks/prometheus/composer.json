@@ -1,5 +1,10 @@
 {
     "name": "example/prometheus",
+    "autoload": {
+        "psr-4": {
+            "OctoLab\\Observer\\Bricks\\Prometheus\\": "src/"
+        }
+    },
     "repositories": [
         { "url": "../../", "type": "path" }
     ],
@@ -7,9 +12,7 @@
         "php": "^8.1",
         "octolab/observer": "dev-main"
     },
-    "autoload": {
-        "psr-4": {
-            "OctoLab\\Observer\\Bricks\\Prometheus\\": "src/"
-        }
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     }
 }

@@ -1,5 +1,10 @@
 {
     "name": "example/sentry",
+    "autoload": {
+        "psr-4": {
+            "OctoLab\\Observer\\Bricks\\Sentry\\": "src/"
+        }
+    },
     "repositories": [
         { "url": "../../", "type": "path" }
     ],
@@ -9,9 +14,7 @@
         "php-http/curl-client": "^2.2",
         "sentry/sentry": "^3.3"
     },
-    "autoload": {
-        "psr-4": {
-            "OctoLab\\Observer\\Bricks\\Sentry\\": "src/"
-        }
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     }
 }
