@@ -1,3 +1,0 @@
-[submodule "bricks/sentry/app"]
-	path = bricks/sentry/app
-	url = git@github.com:getsentry/self-hosted.git
