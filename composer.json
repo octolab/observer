@@ -32,6 +32,7 @@
     "autoload": {
         "psr-4": {
             "OctoLab\\Observer\\": "src/",
+            "OctoLab\\Observer\\Bricks\\Amplitude\\": "bricks/amplitude/src/",
             "OctoLab\\Observer\\Bricks\\Graylog\\": "bricks/graylog/src/",
             "OctoLab\\Observer\\Bricks\\Jaeger\\": "bricks/jaeger/src/",
             "OctoLab\\Observer\\Bricks\\Prometheus\\": "bricks/prometheus/src/",
