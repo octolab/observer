@@ -20,7 +20,7 @@ class Logger implements Observer\Logger
 
     public function log(Severity $severity, string $message, ?Context $context = null): void
     {
-        if ($severity->value < $this->threshold->value && null !== ($error = $context?->error())) {
+        if ($severity->isHigher($this->threshold) && null !== ($error = $context?->error())) {
             $this->transport->captureException($error);
         }
     }

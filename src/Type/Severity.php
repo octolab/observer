@@ -14,4 +14,14 @@ enum Severity: int
     case Notice = 5;
     case Info = 6;
     case Debug = 7;
+
+    public function isHigher(self $severity): bool
+    {
+        return $this->value < $severity->value;
+    }
+
+    public function isLower(self $severity): bool
+    {
+        return $this->value > $severity->value;
+    }
 }
