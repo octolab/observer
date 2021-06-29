@@ -6,6 +6,7 @@ namespace OctoLab\Observer\Payload;
 
 interface Context
 {
+    /** @see https://www.php-fig.org/psr/psr-3/ */
     final public const EXCEPTION = 'exception';
 
     /**

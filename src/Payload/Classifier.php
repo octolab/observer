@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OctoLab\Observer;
+namespace OctoLab\Observer\Payload;
+
+use OctoLab\Observer\Type;
 
 interface Classifier
 {
