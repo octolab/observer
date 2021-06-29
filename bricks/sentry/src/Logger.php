@@ -7,7 +7,7 @@ namespace OctoLab\Observer\Bricks\Sentry;
 use OctoLab\Observer;
 use OctoLab\Observer\Payload\Context;
 use OctoLab\Observer\Type\Severity;
-use Sentry\State\Hub as Sentry;
+use Sentry\State\HubInterface as Sentry;
 
 class Logger implements Observer\Logger
 {
